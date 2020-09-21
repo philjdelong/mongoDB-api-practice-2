@@ -12,6 +12,17 @@ exports.postIndex = (req, res, next) => {
         });
 };
 
+exports.postCreate = (req, res, next) => {
+    const post = new Post({
+        title: req.headers.title,
+        content: req.headers.content,
+        imageURL: req.headers.imageURL || null
+    });
+    post.save();
+    console.log(post)
+    res.redirect("/");
+};
+
 exports.postShow = (req, res, next) => {
     const postId = req.headers._id
     Post.findById(postId)
@@ -23,15 +34,15 @@ exports.postShow = (req, res, next) => {
         })
 }
 
-exports.postCreate = (req, res, next) => {
-    const post = new Post({
-        title: req.headers.title,
-        content: req.headers.content,
-        imageURL: req.headers.imageURL || null
-    });
-    post.save();
-    console.log(post)
-    res.redirect("/");
+exports.postUpdate = (req, res, next) => {
+    const postId = req.headers._id
+    Post.findById(postId)
+        .then(post => {
+            post.title = req.headers.title;
+            post.content = req.headers.content;
+            post.save()
+        });
+    res.redirect("/")
 };
 
 exports.postDelete = (req, res, next) => {
