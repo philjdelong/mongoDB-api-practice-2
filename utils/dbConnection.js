@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 
-const mongoConnect = callback => {
+const mongoConnect = () => {
     mongoose.connect('mongodb+srv://phil:delong@feedapi.1q4s7.gcp.mongodb.net/apipractice2?retryWrites=true&w=majority', { useUnifiedTopology: true, useNewUrlParser: true })
-        .then(client => {
-            console.log("DB Connected");
+        .then(result => {
+            console.log(result.models);
         })
         .catch(err => {
             console.log(err);
@@ -12,13 +12,4 @@ const mongoConnect = callback => {
     );
 };
 
-const getDB = () => {
-    if(_db) {
-        return _db;
-    } else {
-        throw "DB not connected";
-    };
-};
-
 exports.mongoConnect = mongoConnect;
-exports.getDB = getDB;
