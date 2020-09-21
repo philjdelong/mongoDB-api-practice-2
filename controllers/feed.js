@@ -5,7 +5,7 @@ exports.getPosts = (req, res, next) => {
         .then(posts => {
             res.status(200).json({
                 message: "Welcome to Feed!",
-                data: posts // fetch all posts here
+                data: posts
             });
         });
 };
@@ -16,12 +16,6 @@ exports.newPost = (req, res, next) => {
         content: req.headers.content,
         imageURL: req.headers.imageURL || null
     });
-    post
-        .save()
-        .then(result => {
-            res.status(201).json({
-                message: "Post Successful",
-                data: result
-            });
-        });
+    post.save()
+    res.redirect("/")
 };
