@@ -1,10 +1,13 @@
 const Post = require('../models/post')
 
 exports.getPosts = (req, res, next) => {
-    res.status(200).json({
-        message: "Welcome to Feed!",
-        data: {} // fetch all posts here
-    });
+    Post.find()
+        .then(posts => {
+            res.status(200).json({
+                message: "Welcome to Feed!",
+                data: posts // fetch all posts here
+            });
+        });
 };
 
 exports.newPost = (req, res, next) => {
@@ -22,4 +25,3 @@ exports.newPost = (req, res, next) => {
             });
         });
 };
-
