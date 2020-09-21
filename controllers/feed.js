@@ -6,9 +6,19 @@ exports.getPosts = (req, res, next) => {
             res.status(200).json({
                 message: "Welcome to Feed!",
                 data: posts
-            });
+            })
         });
 };
+
+exports.getOne = (req, res, next) => {
+    const postId = req.headers
+    Post.findById(postId)
+        .then(post => {
+            res.status(201).json({
+                post
+            })
+        })
+}
 
 exports.newPost = (req, res, next) => {
     const post = new Post({
@@ -16,6 +26,6 @@ exports.newPost = (req, res, next) => {
         content: req.headers.content,
         imageURL: req.headers.imageURL || null
     });
-    post.save()
-    res.redirect("/")
+    post.save();
+    res.redirect("/");
 };
