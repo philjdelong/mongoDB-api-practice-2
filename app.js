@@ -9,9 +9,7 @@ app.use(bodyParser.json());
 
 app.use("/", feedRoutes)
 
-const port = 3000
-
 connection(
-    app.listen(port),
-    console.log('Serving on Port 3000')
+    app.listen(3000),
+    console.log('Serving on localhost:3000')
 );
