@@ -1,31 +1,44 @@
+const post = require('../models/post');
 const Post = require('../models/post')
 
-exports.getPosts = (req, res, next) => {
+exports.postIndex = (req, res, next) => {
     Post.find()
         .then(posts => {
             res.status(200).json({
                 message: "Welcome to Feed!",
+                log: console.log(posts.length + " total posts"),
                 data: posts
             })
         });
 };
 
-exports.getOne = (req, res, next) => {
-    const postId = req.headers
+exports.postShow = (req, res, next) => {
+    const postId = req.headers._id
     Post.findById(postId)
         .then(post => {
             res.status(201).json({
                 post
             })
+        console.log(post)
         })
 }
 
-exports.newPost = (req, res, next) => {
+exports.postCreate = (req, res, next) => {
     const post = new Post({
         title: req.headers.title,
         content: req.headers.content,
         imageURL: req.headers.imageURL || null
     });
     post.save();
+    console.log(post)
     res.redirect("/");
 };
+
+exports.postDelete = (req, res, next) => {
+    const postId = req.headers._id
+    Post.findByIdAndDelete(postId)
+        .then(post => {
+            console.log(post)
+        })
+    res.redirect("/")
+}
