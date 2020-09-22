@@ -13,6 +13,11 @@ const postSchema = new Schema({
     },
     imageURL: {
         type: String
+    },
+    userId: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
     }
 });
 
