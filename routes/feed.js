@@ -9,4 +9,4 @@ router.get("/post", feedController.postShow)
 router.patch("/post", feedController.postUpdate)
 router.delete("/post", feedController.postDelete)
 
-module.exports = router
+module.exports = router;
