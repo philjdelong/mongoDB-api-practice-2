@@ -1,4 +1,3 @@
-const post = require('../models/post');
 const Post = require('../models/post')
 
 exports.postIndex = (req, res, next) => {
@@ -16,7 +15,9 @@ exports.postCreate = (req, res, next) => {
     const post = new Post({
         title: req.headers.title,
         content: req.headers.content,
-        imageURL: req.headers.imageURL || null
+        imageURL: req.headers.imageURL || null,
+        // need to learn sessions and pass currentUser
+        userId: req.headers.userId || '5f693b6ed158425f5513931c'
     });
     post.save();
     console.log(post)
