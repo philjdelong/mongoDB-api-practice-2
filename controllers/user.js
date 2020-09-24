@@ -14,7 +14,7 @@ exports.userCreate = (req, res, next) => {
 };
 
 exports.userDashboard = (req, res, next) => {
-    const userId = '5f6cbe5b0d26e5c91313a476';
+    const userId = '5f6cc2296d7ce5cc6c495b7a';
     Post.find({userId})
         .then(post => {
             res.status(201).json({
