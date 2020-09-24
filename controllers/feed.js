@@ -5,8 +5,7 @@ exports.postIndex = (req, res, next) => {
     Post.find()
         .then(posts => {
             res.status(200).json({
-                message: "Welcome to Feed!",
-                log: console.log(posts.length + " total posts"),
+                quantity: posts.length + " total posts",
                 data: posts
             })
         });
@@ -18,11 +17,10 @@ exports.postCreate = (req, res, next) => {
         content: req.headers.content,
         imageURL: req.headers.imageURL || null,
         // need sessions and pass currentUser
-        userId: req.headers.userId || '5f6cbe5b0d26e5c91313a476'
+        userId: req.headers.userId || '5f6cc2296d7ce5cc6c495b7a'
     });
     post.save();
     console.log(post)
-    console.log(User.findById(post.userId))
     res.redirect("/");
 };
 
