@@ -1,12 +1,12 @@
+const session = require('express-session');
 const Post = require('../models/post');
 const User = require('../models/user');
 
 exports.userCreate = (req, res, next) => {
     const user = new User({
-        firstName: req.headers.firstname,
-        lastName: req.headers.lastname,
+        username: req.headers.username,
         email: req.headers.email,
-        posts: []
+        password: req.headers.password
     });
     user.save();
     console.log(user);
@@ -14,9 +14,8 @@ exports.userCreate = (req, res, next) => {
 };
 
 exports.userDashboard = (req, res, next) => {
-    const userId = '5f6a4493ea3ac66fde67b5a0';
+    const userId = '5f6cbe5b0d26e5c91313a476';
     Post.find({userId})
-        // .populate('userId')
         .then(post => {
             res.status(201).json({
                 "posts": post
