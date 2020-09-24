@@ -1,4 +1,5 @@
 const Post = require('../models/post')
+const User = require('../models/user')
 
 exports.postIndex = (req, res, next) => {
     Post.find()
@@ -16,22 +17,24 @@ exports.postCreate = (req, res, next) => {
         title: req.headers.title,
         content: req.headers.content,
         imageURL: req.headers.imageURL || null,
-        // need to learn sessions and pass currentUser
-        userId: req.headers.userId || '5f693b6ed158425f5513931c'
+        // need sessions and pass currentUser
+        userId: req.headers.userId || '5f6cbe5b0d26e5c91313a476'
     });
     post.save();
     console.log(post)
+    console.log(User.findById(post.userId))
     res.redirect("/");
 };
 
 exports.postShow = (req, res, next) => {
     const postId = req.headers._id
     Post.findById(postId)
+        .populate('userId')
         .then(post => {
             res.status(201).json({
                 post
             })
-        console.log(post)
+            console.log(post)
         })
 }
 
