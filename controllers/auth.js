@@ -11,9 +11,11 @@ exports.userLogin = (req, res, next) => {
                     .status(200)
                     .redirect('/user/dashboard');
             } else {
-                res.status(401).json({
-                    data: "Login not successful, Please try again."
-                });
+                res
+                    .status(401)
+                    .json({
+                        data: "Login not successful, Please try again."
+                    });
             }
         })
 }
