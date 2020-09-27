@@ -4,6 +4,6 @@ const userController = require('../controllers/user');
 const router = express.Router();
 
 router.get("/dashboard", userController.userDashboard)
-router.post("/", userController.userCreate)
+router.post("/new", userController.userCreate)
 
 module.exports = router;
