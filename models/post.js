@@ -13,13 +13,17 @@ const PostSchema = new Schema(
             required: true
         },
         imageURL: {
-            type: String
+            type: String,
+            required: false,
+            default: ''
         },
-        userId: {
-            type: Schema.Types.ObjectId,
-            ref: 'User',
-            required: true
-        },
+        author: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'User',
+                required: true
+            },
+        ]     
     }, 
     { timestamps: true },
     { collection: 'posts' }
