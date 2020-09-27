@@ -2,8 +2,8 @@
 const User = require('../models/user');
 
 exports.userLogin = (req, res, next) => {
-    const email = req.headers.email
-    const password = req.headers.password
+    const email = req.body.email
+    const password = req.body.password
     User.find({email})
         .then(user => {
             if(password == user[0].password) {

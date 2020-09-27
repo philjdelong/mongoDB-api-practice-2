@@ -4,21 +4,20 @@ const User = require('../models/user');
 
 exports.userCreate = (req, res, next) => {
     const user = new User({
-        username: req.headers.username,
-        email: req.headers.email,
-        password: req.headers.password
+        username: req.body.username,
+        email: req.body.email,
+        password: req.body.password
     });
     user.save();
-    console.log(user);
-    res.redirect("/")
+    res.redirect("/user/dashboard")
 };
 
 exports.userDashboard = (req, res, next) => {
-    const userId = '5f6cc2296d7ce5cc6c495b7a';
-    Post.find({userId})
-        .then(post => {
-            res.status(201).json({
-                "posts": post
-            })
+    const email = req.body.email
+    User.find({email})
+        .then(user => {
+            res
+                .status(200)
+                .json(user[0])
         })
 }
