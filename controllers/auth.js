@@ -5,8 +5,8 @@ exports.userLogin = (req, res, next) => {
     const email = req.body.email
     const password = req.body.password
     User.find({email})
-        .then(user => {
-            if(password == user[0].password) {
+        .then(result => {
+            if(password == result[0].password) {
                 res
                     .status(200)
                     .redirect('/user/dashboard');

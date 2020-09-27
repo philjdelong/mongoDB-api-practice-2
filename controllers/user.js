@@ -15,9 +15,9 @@ exports.userCreate = (req, res, next) => {
 exports.userDashboard = (req, res, next) => {
     const email = req.body.email
     User.find({email})
-        .then(user => {
+        .then(result => {
             res
                 .status(200)
-                .json(user[0])
+                .json(result[0])
         })
 }
